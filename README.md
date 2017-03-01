@@ -2,6 +2,22 @@
 
 > A Vue.js project
 
+## Config
+> firebase auth enable
+![alt tag](http://images2015.cnblogs.com/blog/364241/201610/364241-20161031025159315-140732564.png)
+
+At -> src/components/Hello.vue     [firebase console](https://console.firebase.google.com/)
+``` bash
+let config = {
+//firebase console
+		apiKey: '',
+        authDomain: "",
+        databaseURL: "",
+        storageBucket: "",
+        messagingSenderId: ""
+}
+```
+
 ## Build Setup
 
 ``` bash
