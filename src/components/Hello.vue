@@ -26,73 +26,80 @@
   </div>
   <div class="mdl-cell mdl-cell--4-col"></div>
 </div>
+  
+  </div>
   </div>
 </template>
 
 <script>
-import Firebase from 'firebase'
-const config = {
-	apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    storageBucket: "",
-    messagingSenderId: ""
-}
-const app = Firebase.initializeApp(config);
-
-var provider = new Firebase.auth.GoogleAuthProvider();
-export default {
-  name: 'hello',
-  data () {
-    return {
-      authInput:{
-      txtEmail:'',
-      txtPassword:''
-      }
+    import Firebase from 'firebase'
+    const config = {
+        apiKey: '',
+        authDomain: "",
+        databaseURL: "",
+        storageBucket: "",
+        messagingSenderId: ""
     }
-  },
-  methods:{
-    Login:function(event){
-        const email = this.authInput.txtEmail;
-        const pass =  this.authInput.txtPassword;
-        const auth = Firebase.auth();
-        const promise = auth.signInWithEmailAndPassword(email, pass);
-         this.authInput.txtEmail ='';
-        this.authInput.txtPassword = '';
-        promise.catch(event => console.log(event.message));
-    },
-    SignUp:function(event){
-        const email = this.authInput.txtEmail;
-        const pass =  this.authInput.txtPassword;
-        const auth = Firebase.auth();
-        const promise = auth.createUserWithEmailAndPassword(email, pass);
-        this.authInput.txtEmail ='';
-        this.authInput.txtPassword = '';
-        promise.catch(event => console.log(event.message));
+    const app = Firebase.initializeApp(config);
+    var provider = new Firebase.auth.GoogleAuthProvider();
+    export default {
+        name: 'hello',
+        data() {
+            return {
+                authInput: {
+                    txtEmail: '',
+                    txtPassword: ''
+                }
+            }
+        },
+        methods: {
+            Login: function(event) {
+                const email = this.authInput.txtEmail;
+                const pass = this.authInput.txtPassword;
+                const auth = Firebase.auth();
+                const promise = auth.signInWithEmailAndPassword(email, pass);
+                this.authInput.txtEmail = '';
+                this.authInput.txtPassword = '';
+                promise.catch(event => console.log(event.message));
+            },
+            SignUp: function(event) {
+                const email = this.authInput.txtEmail;
+                const pass = this.authInput.txtPassword;
+                const auth = Firebase.auth();
+                const promise = auth.createUserWithEmailAndPassword(email, pass);
+                this.authInput.txtEmail = '';
+                this.authInput.txtPassword = '';
+                promise.catch(event => console.log(event.message));
 
-    },
-    googleLogin:function(){
-      Firebase.auth().signInWithPopup(provider).then(function(result) {
-        console.log(result);
-      }).catch(function(error) {
-      });
-    }, 
-    LogOut:function(){
-        Firebase.auth().signOut();
+            },
+            googleLogin: function() {
+                Firebase.auth().signInWithPopup(provider).then(function(result) {
+                    console.log(result);
+                }).catch(function(error) {});
+            },
+            LogOut: function() {
+                Firebase.auth().signOut();
+            }
+        }
+
     }
- }
- 
-}
-Firebase.auth().onAuthStateChanged(firebaseUser =>{
-  if(firebaseUser){
-    console.log(firebaseUser);
-    document.getElementById('btnLogout').style.display = '';
-  }else{
-    console.log('not loggend in');
-    document.getElementById('btnLogout').style.display = 'none';
-  }
-})
+    Firebase.auth().onAuthStateChanged(firebaseUser => {
+        if (firebaseUser) {
+            firebaseUser.sendEmailVerification().then(function() {
+                console.log('send Verification');
+            }, function(error) {
+                console.log('not send Verification');
+            });
+            if (firebaseUser.emailVerified == true) {
+                document.getElementById('btnLogout').style.display = '';
+            } else {
+                document.getElementById('btnLogout').style.display = 'none';
+            }
+
+
+        } else {
+            console.log('not loggend in');
+            document.getElementById('btnLogout').style.display = 'none';
+        }
+    })
 </script>
-
-
-
