@@ -1,4 +1,4 @@
-# vuefire-webpack-auth demo
+# vuefire-auth
 
 > A Vue.js project
 
