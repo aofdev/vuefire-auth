@@ -11,11 +11,6 @@ At -> src/components/Hello.vue     [firebase console](https://console.firebase.g
 ``` bash
 let config = {
 //firebase console
-		apiKey: '',
-        authDomain: "",
-        databaseURL: "",
-        storageBucket: "",
-        messagingSenderId: ""
 }
 ```
 
