@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
 <div class="mdl-grid">
   <div class="mdl-cell mdl-cell--4-col"></div>
   <div class="mdl-cell mdl-cell--4-col">
@@ -26,7 +26,6 @@
   </div>
   <div class="mdl-cell mdl-cell--4-col"></div>
 </div>
-  
   </div>
   </div>
 </template>
@@ -34,16 +33,11 @@
 <script>
     import Firebase from 'firebase'
     const config = {
-        apiKey: '',
-        authDomain: "",
-        databaseURL: "",
-        storageBucket: "",
-        messagingSenderId: ""
+    //firebase console
     }
     const app = Firebase.initializeApp(config);
     var provider = new Firebase.auth.GoogleAuthProvider();
     export default {
-        name: 'hello',
         data() {
             return {
                 authInput: {
@@ -91,11 +85,11 @@
                 console.log('not send Verification');
             });
             if (firebaseUser.emailVerified == true) {
+                console.log('login success');
                 document.getElementById('btnLogout').style.display = '';
             } else {
                 document.getElementById('btnLogout').style.display = 'none';
             }
-
 
         } else {
             console.log('not loggend in');
