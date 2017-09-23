@@ -30,4 +30,4 @@ npm run build
 npm run build --report
 ```
 ## Project New🔥!!!
-[Vue Firebase🔥 Auth with Vuex and Support Progressive Web Apps](https://github.com/aofdev/vue-firebase-auth-vuex)
+[Vue Firebase Authentication with Vuex and support Progressive Web Apps](https://github.com/aofdev/vue-firebase-auth-vuex)
